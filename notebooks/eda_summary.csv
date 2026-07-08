@@ -1,0 +1,14 @@
+Metric,Value
+Total images (files on disk),0.0
+Total unique images in captions.txt,8091.0
+Total captions,40455.0
+Mean captions/image,5.0
+Vocabulary size,8446.0
+Mean caption length (words),10.81
+Max caption length (words),36.0
+Duplicate caption rows (global),448.0
+Images with internal duplicate captions,10.0
+Blank captions,0.0
+Short captions (< 2 words),2.0
+Corrupted images,0.0
+Captions with missing image file,0.0
