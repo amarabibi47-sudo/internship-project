@@ -1,0 +1,4 @@
+Metric,Average Score
+BLEU,0.1968
+METEOR,0.395
+ROUGE-L,0.5383
