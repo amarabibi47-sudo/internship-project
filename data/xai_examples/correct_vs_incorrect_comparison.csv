@@ -1,0 +1,9 @@
+image,category,generated_caption,ground_truth,bleu_score,explanation_summary
+1187593464_ce862352c6.jpg,Correct (Good),a dog running with a stick in its mouth,A big tan dog runs on grass with a big stick in his mouth .,1.0,Attention concentrated on main subject
+1235681222_819231767a.jpg,Correct (Good),people sitting on benches in a public area,A person in a blue shirt sits behind two people sitting on a wood bench .,1.0,Attention concentrated on main subject
+1000268201_693b08cb0e.jpg,Correct (Good),a little girl in a pink dress,A child in a pink dress is climbing up a set of stairs in an entry way .,0.867,Attention concentrated on main subject
+1119418776_58e4b93eac.jpg,Correct (Good),a dog running in a field,A black and white dog is running through the field .,0.846,Attention concentrated on main subject
+1142283988_6b227c5231.jpg,Incorrect (Poor),a woman hugging a man,A blond woman poses with a person in a pink costume .,0.025,Attention scattered/on background
+1016887272_03199f49c4.jpg,Incorrect (Poor),a large rock wall,A collage of one person climbing a cliff .,0.023,Attention scattered/on background
+1022454332_6af2c1449a.jpg,Incorrect (Poor),a body of water,A child and a woman are at waters edge in a big city .,0.018,Attention scattered/on background
+1093716555_801aacef79.jpg,Incorrect (Poor),a clear blue sky,a group of backpackers lay on the dry ground .,0.017,Attention scattered/on background
