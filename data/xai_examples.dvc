@@ -1,0 +1,6 @@
+outs:
+- md5: 6ecb3c5cfea885b24bb05fd023bf77c4.dir
+  size: 20742217
+  nfiles: 50
+  hash: md5
+  path: xai_examples
