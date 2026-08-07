@@ -6,19 +6,13 @@ Unit tests for data_loader.py and inference.py
 import sys
 import os
 import pandas as pd
-from PIL import Image
 
-# src/ folder ko path mein add karein taake imports ho sakein
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from data_loader import clean_text, tokenize, add_start_end_tokens, load_captions
-from model import load_blip_model
-from inference import generate_caption
+from data_loader import clean_text, tokenize, add_start_end_tokens, load_captions  # noqa: E402
+from model import load_blip_model  # noqa: E402
+from inference import generate_caption  # noqa: E402
 
-
-# ---------------------------
-# data_loader.py ke tests
-# ---------------------------
 
 def test_clean_text_lowercases_and_removes_punctuation():
     result = clean_text("A Dog is Running!!")
@@ -62,10 +56,6 @@ def test_load_captions_returns_dataframe():
     assert "caption_text" in df.columns
 
 
-# ---------------------------
-# inference.py ke tests
-# ---------------------------
-
 def test_generate_caption_returns_string():
     processor, model, device = load_blip_model()
     sample_image = "data/Images/1000268201_693b08cb0e.jpg"
@@ -81,7 +71,7 @@ def test_generate_caption_no_crash_on_valid_image():
     sample_image = "data/Images/1000268201_693b08cb0e.jpg"
 
     try:
-        caption = generate_caption(sample_image, model, processor, device)
+        generate_caption(sample_image, model, processor, device)
         success = True
     except Exception:
         success = False

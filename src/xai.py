@@ -3,7 +3,6 @@ xai.py
 Explainability utilities: Grad-CAM and occlusion-based (SHAP-style) importance maps.
 """
 
-import torch
 import torch.nn.functional as F
 import numpy as np
 import cv2
@@ -19,16 +18,16 @@ def generate_gradcam(image_path, model, processor, device):
     gradients = {}
 
     def forward_hook(module, input, output):
-        activations['value'] = output
+        activations["value"] = output
 
     def backward_hook(module, grad_input, grad_output):
-        gradients['value'] = grad_output[0]
+        gradients["value"] = grad_output[0]
 
     target_layer = model.vision_model.encoder.layers[-1]
     handle_fwd = target_layer.register_forward_hook(forward_hook)
     handle_bwd = target_layer.register_full_backward_hook(backward_hook)
 
-    pixel_values = inputs['pixel_values']
+    pixel_values = inputs["pixel_values"]
     pixel_values.requires_grad_()
 
     vision_outputs = model.vision_model(pixel_values=pixel_values)
@@ -41,16 +40,16 @@ def generate_gradcam(image_path, model, processor, device):
     model.zero_grad()
     score.backward()
 
-    grads = gradients['value']
-    acts = activations['value']
+    grads = gradients["value"]
+    acts = activations["value"]
 
     weights = grads.mean(dim=1, keepdim=True)
     cam = (weights * acts).sum(dim=-1).squeeze(0)
 
     cam = cam[1:] if cam.shape[0] % 2 != 0 else cam
     num_patches = cam.shape[0]
-    grid_size = int(num_patches ** 0.5)
-    cam = cam[:grid_size*grid_size].reshape(grid_size, grid_size)
+    grid_size = int(num_patches**0.5)
+    cam = cam[: grid_size * grid_size].reshape(grid_size, grid_size)
 
     cam = F.relu(cam)
     cam = cam.detach().cpu().numpy()
@@ -88,7 +87,9 @@ def compute_patch_importance(image_path, model, processor, device, grid_size=4):
     for i in range(grid_size):
         for j in range(grid_size):
             occluded = img_array.copy()
-            occluded[i*patch_h:(i+1)*patch_h, j*patch_w:(j+1)*patch_w] = 128
+            occluded[
+                i * patch_h : (i + 1) * patch_h, j * patch_w : (j + 1) * patch_w
+            ] = 128
             occluded_img = Image.fromarray(occluded)
 
             occ_inputs = processor(occluded_img, return_tensors="pt").to(device)
@@ -102,10 +103,3 @@ def compute_patch_importance(image_path, model, processor, device, grid_size=4):
             importance_map[i, j] = difference
 
     return importance_map, original_caption
-
-
-if __name__ == "__main__":
-    from model import load_blip_model
-    processor, model, device = load_blip_model()
-    cam, caption, raw_image = generate_gradcam("../data/Images/1000268201_693b08cb0e.jpg", model, processor, device)
-    print(f"Caption: {caption}, CAM shape: {cam.shape}")

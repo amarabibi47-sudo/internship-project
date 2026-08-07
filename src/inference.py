@@ -6,7 +6,9 @@ Handles caption generation (inference) using a loaded BLIP model.
 from PIL import Image
 
 
-def generate_caption(image_path, model, processor, device, max_new_tokens=30, num_beams=1):
+def generate_caption(
+    image_path, model, processor, device, max_new_tokens=30, num_beams=1
+):
     """
     Generate a caption for a single image.
     num_beams=1 -> greedy decoding (chosen baseline from Week 2)
@@ -29,6 +31,9 @@ def generate_captions_batch(image_paths, model, processor, device):
 
 if __name__ == "__main__":
     from model import load_blip_model
+
     processor, model, device = load_blip_model()
-    caption = generate_caption("../data/Images/1000268201_693b08cb0e.jpg", model, processor, device)
+    caption = generate_caption(
+        "../data/Images/1000268201_693b08cb0e.jpg", model, processor, device
+    )
     print(f"Generated caption: {caption}")

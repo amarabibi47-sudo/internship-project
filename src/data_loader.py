@@ -31,14 +31,14 @@ def tokenize(text):
 
 def add_start_end_tokens(tokens):
     """Add <start> and <end> markers to a token list."""
-    return ['<start>'] + tokens + ['<end>']
+    return ["<start>"] + tokens + ["<end>"]
 
 
 def preprocess_captions(df, caption_col="caption_text"):
     """Full text preprocessing pipeline on a captions dataframe."""
-    df['clean_caption'] = df[caption_col].apply(clean_text)
-    df['tokens'] = df['clean_caption'].apply(tokenize)
-    df['final_tokens'] = df['tokens'].apply(add_start_end_tokens)
+    df["clean_caption"] = df[caption_col].apply(clean_text)
+    df["tokens"] = df["clean_caption"].apply(tokenize)
+    df["final_tokens"] = df["tokens"].apply(add_start_end_tokens)
     return df
 
 
