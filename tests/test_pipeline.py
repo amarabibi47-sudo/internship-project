@@ -7,14 +7,9 @@ import sys
 import os
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from data_loader import (
-    clean_text,
-    tokenize,
-    add_start_end_tokens,
-    load_captions,
-)  # noqa: E402
+from data_loader import clean_text, tokenize, add_start_end_tokens, load_captions  # noqa: E402
 from model import load_blip_model  # noqa: E402
 from inference import generate_caption  # noqa: E402
 
@@ -63,7 +58,7 @@ def test_load_captions_returns_dataframe():
 
 def test_generate_caption_returns_string():
     processor, model, device = load_blip_model()
-    sample_image = "data/Images/1000268201_693b08cb0e.jpg"
+    sample_image = "tests/sample_data/sample.jpg"
 
     caption = generate_caption(sample_image, model, processor, device)
 
@@ -73,7 +68,7 @@ def test_generate_caption_returns_string():
 
 def test_generate_caption_no_crash_on_valid_image():
     processor, model, device = load_blip_model()
-    sample_image = "data/Images/1000268201_693b08cb0e.jpg"
+    sample_image = "tests/sample_data/sample.jpg"
 
     try:
         generate_caption(sample_image, model, processor, device)
@@ -86,7 +81,7 @@ def test_generate_caption_no_crash_on_valid_image():
 
 def test_generate_caption_invalid_path_raises_error():
     processor, model, device = load_blip_model()
-    invalid_path = "data/Images/this_image_does_not_exist.jpg"
+    invalid_path = "tests/sample_data/this_image_does_not_exist.jpg"
 
     try:
         generate_caption(invalid_path, model, processor, device)
