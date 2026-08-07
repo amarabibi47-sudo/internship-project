@@ -9,7 +9,12 @@ import pandas as pd
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from data_loader import clean_text, tokenize, add_start_end_tokens, load_captions  # noqa: E402
+from data_loader import (
+    clean_text,
+    tokenize,
+    add_start_end_tokens,
+    load_captions,
+)  # noqa: E402
 from model import load_blip_model  # noqa: E402
 from inference import generate_caption  # noqa: E402
 
