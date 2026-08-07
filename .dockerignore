@@ -1,0 +1,13 @@
+venv/
+data/Images/
+.git/
+.dvc/
+mlartifacts/
+mlflow.db
+models/
+__pycache__/
+*.pyc
+notebooks/
+.ipynb_checkpoints/
+app/outputs/
+app/screenshots/
