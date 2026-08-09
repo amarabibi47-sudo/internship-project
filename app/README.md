@@ -1,3 +1,4 @@
+<img width="1351" height="618" alt="image" src="https://github.com/user-attachments/assets/b98d53c1-66e1-44a0-bcba-34a4698dac3d" />
 ## Running with Docker
 
 Build the image:
