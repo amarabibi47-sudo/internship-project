@@ -12,16 +12,11 @@ RUN apt-get update && apt-get install -y \
 
 COPY app/requirements.txt .
 
-# Torch CPU-only version pehle install karein (chhoti, tez)
 RUN pip install --no-cache-dir --default-timeout=200 torch torchvision --index-url https://download.pytorch.org/whl/cpu
-
-# Baaki dependencies install karein
 RUN pip install --no-cache-dir --default-timeout=200 --retries 5 -r requirements.txt
 
 COPY src/ ./src/
 COPY app/ ./app/
-COPY data/processed/ ./data/processed/
-COPY data/captions.txt ./data/captions.txt
 
 EXPOSE 8000
 
